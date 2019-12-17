@@ -12,6 +12,7 @@ int main()
 	cout << "radek";
 	std::cout << "Hello World!\n" << endl;
 	cout << "Jebać radka" << endl;
+	cout << "^^" << endl;
 }
 
 // Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
