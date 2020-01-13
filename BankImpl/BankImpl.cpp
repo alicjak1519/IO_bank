@@ -1,27 +1,70 @@
-﻿// BankImpl.cpp : Ten plik zawiera funkcję „main”. W nim rozpoczyna się i kończy wykonywanie programu.
-//
-
-
-#include <iostream>
+﻿#include <iostream>
 #include "bank.h"
+#include <stdio.h>
+#include <cstdlib>
+#include <conio.h>
+
 using namespace std;
 
+int wybor;
+void start();
+
+void logowanie() {
+	system("cls");
+	cout << "----MENU----" << endl;
+	cout << endl;
+	cout << "1. Przelew." << endl;
+	cout << "2. Saldo." << endl;
+	cout << "3. Wyloguj." << endl;
+	cout << endl;
+	cout << "Podaj numer komendy: ";
+	cin >> wybor;
+
+	switch (wybor) {
+	case 1:
+		cout << "przelew" << endl;
+		break;
+	case 2:
+		cout << "saldo" << endl;
+		break;
+	case 3:
+		start();
+	};
+}
+
+void zalozKonto() {
+
+}
+
+void start() {
+	system("cls");
+	cout << "----MENU----" << endl;
+	cout << endl;
+	cout << "1. Logowanie." << endl;
+	cout << "2. Zaloz konto." << endl;
+	cout << endl;
+	cout << "Podaj numer komendy: ";
+	cin >> wybor;
+
+	
+	switch (wybor) {
+	case 1:
+		logowanie();
+		break;
+	case 2:
+		cout << "kon" << endl;
+		break;
+	default:
+		break;
+
+	};
+
+};
 
 int main()
 {
-	cout << "radek";
-	std::cout << "Hello World!\n" << endl;
-	cout << "Jebać radka" << endl;
-	cout << "^^" << endl;
+	start();
+
+	return 0;
 }
 
-// Uruchomienie programu: Ctrl + F5 lub menu Debugowanie > Uruchom bez debugowania
-// Debugowanie programu: F5 lub menu Debugowanie > Rozpocznij debugowanie
-
-// Porady dotyczące rozpoczynania pracy:
-//   1. Użyj okna Eksploratora rozwiązań, aby dodać pliki i zarządzać nimi
-//   2. Użyj okna programu Team Explorer, aby nawiązać połączenie z kontrolą źródła
-//   3. Użyj okna Dane wyjściowe, aby sprawdzić dane wyjściowe kompilacji i inne komunikaty
-//   4. Użyj okna Lista błędów, aby zobaczyć błędy
-//   5. Wybierz pozycję Projekt > Dodaj nowy element, aby utworzyć nowe pliki kodu, lub wybierz pozycję Projekt > Dodaj istniejący element, aby dodać istniejące pliku kodu do projektu
-//   6. Aby w przyszłości ponownie otworzyć ten projekt, przejdź do pozycji Plik > Otwórz > Projekt i wybierz plik sln

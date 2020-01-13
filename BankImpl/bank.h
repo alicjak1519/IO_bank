@@ -16,6 +16,18 @@ public:
 	Data(int y, int m, int d, int h, int min, int s) : year(y), month(m), day(d), hour(h), minute(min), second(s) {};
 };
 
+class KontoBankowe {
+public:
+	long numerKonta;
+	double saldo;
+	string typKonta;
+	KontoBankowe() {};
+	void sprawdzSaldo() {};
+	void wp³ac() {};
+	void wyplac() {};
+
+};
+
 class Przelew {
 public:
 	double wysokoscPrzelewu;
@@ -23,7 +35,7 @@ public:
 	string odbiorca;
 	string tytul;
 	long numerKontaOdiorcy;
-	Przelew() {};
+	Przelew();
 	void wplacNaKonto(KontoBankowe konto) {};
 	void pobierzZKonta(KontoBankowe konto) {};
 	void sprawdzMozliwoscWykonania(KontoBankowe konto) {};
@@ -33,7 +45,7 @@ class ZlecenieStale {
 public:
 	int czestotliwosc;
 	Data dataRozpoczecia;
-	ZlecenieStale() {};
+	ZlecenieStale();
 	void ustawCzestotliwosc() {};
 	void ustawDateRozpoczecia() {};
 };
@@ -63,17 +75,7 @@ public:
 	void zamknijKredyt() {};
 	void zatwierdzKredyt() {};
 };
-class KontoBankowe {
-public:
-	long numerKonta;
-	double saldo;
-	string typKonta;
-	KontoBankowe() {};
-	void sprawdzSaldo() {};
-	void wp³ac() {};
-	void wyplac() {};
 
-};
 
 class Osoba {
 public:
@@ -92,7 +94,7 @@ public:
 class U¿ytkownik : public Osoba {
 public:
 	KontoBankowe konto;
-	U¿ytkownik() {};
+	U¿ytkownik();
 	void sprawdzStanKonta() {};
 	void wezKredyt() {};
 	void zalozLokate() {};
@@ -104,7 +106,7 @@ class Pracownik : public Osoba {
 	string idPracownika;
 	string stanowisko;
 	double wynagrodzenie;
-	Pracownik() {};
+	Pracownik();
 	void zatwierdzKredyty() {};
 	void sprawdzZdolnosc() {};
 };
