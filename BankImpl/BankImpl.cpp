@@ -9,6 +9,7 @@ using namespace std;
 int wybor;
 void start();
 
+
 void logowanie() {
 	system("cls");
 	cout << "----MENU----" << endl;
