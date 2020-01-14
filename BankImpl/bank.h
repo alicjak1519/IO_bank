@@ -68,21 +68,23 @@ private:
 public:
 	KontoBankowe(string typ);
 	KontoBankowe(const KontoBankowe &konto);
-	void sprawdzSaldo() {};
+	double zwrocSaldo() { return saldo; };
+	string zwrocNrKonta() { return numerKonta; };
+	string zwrocTypKonta() { return typKonta; };
 	void wp³ac() {};
-	void wyplac() {};
+	void wyplac(double kwota) { saldo -= kwota; };
 
 };
 
 class Przelew {
 private:
 	double wysokoscPrzelewu;
-	Data data;
+	Data *data;
 	string odbiorca;
 	string tytul;
-	long numerKontaOdiorcy;
+	string numerKontaOdiorcy;
 public:
-	Przelew();
+	Przelew(string adresat, string nrKonta, double kwota, string tyt);
 	void wplacNaKonto(KontoBankowe konto) {};
 	void pobierzZKonta(KontoBankowe konto) {};
 	void sprawdzMozliwoscWykonania(KontoBankowe konto) {};
@@ -97,17 +99,27 @@ private:
 public:
 	Osoba() {};
 	Osoba(string im, string naz, string pes, string nrDow);
+	string zwrocImie() { return "kupa"; }
+	string zwrocNazwisko() { return nazwisko; }
 };
 
 class Uzytkownik : public Osoba {
 private:
 	vector <KontoBankowe*> konta;
+	vector <Przelew*> przelewy;
 	string numerKlienta;
 	string haslo;
 public:
 	Uzytkownik();
 	Uzytkownik(string im, string naz, string pes, string nrDow, string nrKlienta, string pass);
-	void sprawdzStanKonta() {};
+	string getNrKlienta() { return numerKlienta; }
+	string getHaslo() { return haslo; }
+	void zwrocDane() {
+		string im = zwrocImie();
+		string naz = zwrocNazwisko();
+		cout << im ;
+	}
+	void sprawdzStanKonta();
 	void wezKredyt() {};
 	void zalozLokate() {};
 	void zrobPrzelew() {};

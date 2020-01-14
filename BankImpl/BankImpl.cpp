@@ -33,7 +33,7 @@ void stanKonta() {
 	cout << "----STANY KONT----" << endl;
 	cout << endl;
 
-
+	zalogowany->sprawdzStanKonta();
 
 	cout << endl;
 	cout << "1. Cofnij" << endl;
@@ -62,7 +62,7 @@ void przelewy() {
 
 	switch (wybor) {
 	case 1:
-
+		zalogowany->zrobPrzelew();
 		break;
 	case 2:
 
@@ -142,6 +142,7 @@ void kredyty() {
 
 void menuGlowne() {
 	system("cls");
+	cout << "Zalogowany: "; zalogowany->zwrocDane(); cout << endl;
 	cout << "----MENU----" << endl;
 	cout << endl;
 	cout << "1. Stan konta" << endl;
@@ -175,9 +176,22 @@ void logowanie() {
 	string nrklienta, haslo;
 	cout << "Podaj numer klienta: ";	cin >> nrklienta;
 	cout << "Podaj haslo: ";			cin >> haslo;
-
-
-
+	
+	bool check = false;
+	for (size_t i = 0; i < listaKlientow.size(); i++) {
+		if (listaKlientow[i]->getNrKlienta() == nrklienta && listaKlientow[i]->getHaslo() == haslo) {
+			zalogowany = listaKlientow[i];
+			check = true;
+			break;
+		}
+	}
+	if (check) {
+		menuGlowne();
+	}
+	else {
+		cout << endl << "Blędne dane. Spruboj jeszcze raz." << endl;
+		logowanie();
+	}
 }
 
 void zalozKonto() {
@@ -189,7 +203,7 @@ void zalozKonto() {
 	cout << "Numer dowodu: ";	cin >> nrDowodu;
 
 	srand(time(NULL));
-	for (int i = 0; i < 8; i++) {
+	for (int i = 0; i < 1; i++) {
 		int liczba = rand() % 9 + 0;
 		string _str = to_string(liczba);
 		numerKlienta += _str;
@@ -221,7 +235,7 @@ void start() {
 
 	switch (wybor) {
 	case 1:
-		menuGlowne();
+		logowanie();
 		break;
 	case 2:
 		zalozKonto();
