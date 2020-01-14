@@ -1,6 +1,7 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 
 using namespace std;
@@ -16,30 +17,6 @@ public:
 	Data(int y, int m, int d, int h, int min, int s) : year(y), month(m), day(d), hour(h), minute(min), second(s) {};
 };
 
-class KontoBankowe {
-public:
-	long numerKonta;
-	double saldo;
-	string typKonta;
-	KontoBankowe() {};
-	void sprawdzSaldo() {};
-	void wp³ac() {};
-	void wyplac() {};
-
-};
-
-class Przelew {
-public:
-	double wysokoscPrzelewu;
-	Data data;
-	string odbiorca;
-	string tytul;
-	long numerKontaOdiorcy;
-	Przelew();
-	void wplacNaKonto(KontoBankowe konto) {};
-	void pobierzZKonta(KontoBankowe konto) {};
-	void sprawdzMozliwoscWykonania(KontoBankowe konto) {};
-};
 
 class ZlecenieStale {
 public:
@@ -76,6 +53,32 @@ public:
 	void zatwierdzKredyt() {};
 };
 
+class KontoBankowe {
+public:
+	long numerKonta;
+	double saldo;
+	string typKonta;
+	vector <Kredyt> kredyty;
+	vector <Lokata> lokaty;
+	KontoBankowe() {};
+	void sprawdzSaldo() {};
+	void wp³ac() {};
+	void wyplac() {};
+
+};
+
+class Przelew {
+public:
+	double wysokoscPrzelewu;
+	Data data;
+	string odbiorca;
+	string tytul;
+	long numerKontaOdiorcy;
+	Przelew();
+	void wplacNaKonto(KontoBankowe konto) {};
+	void pobierzZKonta(KontoBankowe konto) {};
+	void sprawdzMozliwoscWykonania(KontoBankowe konto) {};
+};
 
 class Osoba {
 public:
@@ -93,7 +96,7 @@ public:
 
 class U¿ytkownik : public Osoba {
 public:
-	KontoBankowe konto;
+	vector <KontoBankowe> konta;
 	U¿ytkownik();
 	void sprawdzStanKonta() {};
 	void wezKredyt() {};
