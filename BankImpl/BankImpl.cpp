@@ -9,6 +9,7 @@
 using namespace std;
 
 vector <Uzytkownik*> listaKlientow;
+Uzytkownik* zalogowany;
 int wybor;
 
 void stanKonta();
