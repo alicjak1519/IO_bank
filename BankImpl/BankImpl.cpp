@@ -18,7 +18,7 @@ void stanKonta() {
 
 
 	cout << endl;
-	cout << "1. Cofnij" << endl;
+	cout << "1. Cofnijss" << endl;
 	cout << endl;
 	cout << "Podaj numer komendy: ";
 	cin >> wybor;
