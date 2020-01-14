@@ -95,16 +95,18 @@ private:
 	string pesel;
 	string nrDowodu;
 public:
-	Osoba(){}
+	Osoba() {};
 	Osoba(string im, string naz, string pes, string nrDow);
 };
 
 class Uzytkownik : public Osoba {
 private:
 	vector <KontoBankowe*> konta;
+	string numerKlienta;
+	string haslo;
 public:
 	Uzytkownik();
-	Uzytkownik(string im, string naz, string pes, string nrDow);
+	Uzytkownik(string im, string naz, string pes, string nrDow, string nrKlienta, string pass);
 	void sprawdzStanKonta() {};
 	void wezKredyt() {};
 	void zalozLokate() {};

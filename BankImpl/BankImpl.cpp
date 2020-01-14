@@ -3,9 +3,12 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <conio.h>
+#include <time.h>
+#include <vector>
 
 using namespace std;
 
+vector <Uzytkownik*> listaKlientow;
 int wybor;
 void start();
 void menuGlowne();
@@ -153,15 +156,40 @@ void menuGlowne() {
 	};
 }
 
+void logowanie() {
+	string nrklienta, haslo;
+	cout << "Podaj numer klienta: ";	cin >> nrklienta;
+	cout << "Podaj haslo: ";			cin >> haslo;
+	
+
+
+}
+
 void zalozKonto() {
-	string imie, nazwisko, pesel, nrDowodu;
+	string imie, nazwisko, pesel, nrDowodu, numerKlienta, haslo;
 	cout << "Wprowadz dane" << endl;
 	cout << "Imie: ";			cin >> imie;
-	cout << "Nazwisko: ";		cin >> imie;
-	cout << "Pesel: ";			cin >> imie;
-	cout << "Numer dowodu: ";	cin >> imie;
+	cout << "Nazwisko: ";		cin >> nazwisko;
+	cout << "Pesel: ";			cin >> pesel;
+	cout << "Numer dowodu: ";	cin >> nrDowodu;
 
-	Uzytkownik* user = new Uzytkownik(imie, nazwisko, pesel, nrDowodu);
+	srand(time(NULL));
+	for (int i = 0; i < 8; i++) {
+		int liczba = rand() % 9 + 0;
+		string _str = to_string(liczba);
+		numerKlienta += _str;
+	}
+
+	cout << endl << "Witamy Cie " << imie << " w naszym banku." << endl << endl;
+	cout << "To twoj nowy numer klienta: " << numerKlienta << endl;
+	cout << "Podaj haslo: ";	cin >> haslo;
+
+
+	Uzytkownik* user = new Uzytkownik(imie, nazwisko, pesel, nrDowodu, numerKlienta, haslo);
+	listaKlientow.push_back(user);
+	cout << endl << "Zaloguj sie teraz do twojego nowego konta.";
+	getchar(); getchar();
+	start();
 
 }
 
@@ -181,7 +209,7 @@ void start() {
 		menuGlowne();
 		break;
 	case 2:
-		cout << "kon" << endl;
+		zalozKonto();
 		break;
 	default:
 		break;

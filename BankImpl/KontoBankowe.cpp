@@ -13,7 +13,8 @@ KontoBankowe::KontoBankowe(string typ)
 	srand(time(NULL));
 	for (int i = 0; i < DLUGOSC_KONTA; i++) {
 		liczba = rand() % 9 + 0;
-		numerKonta += liczba;
+		string _str = to_string(liczba);
+		numerKonta += _str;
 	}
 }
 
