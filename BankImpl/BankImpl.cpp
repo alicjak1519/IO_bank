@@ -18,7 +18,7 @@ void stanKonta() {
 
 
 	cout << endl;
-	cout << "1. Cofnijss" << endl;
+	cout << "1. Cofnij" << endl;
 	cout << endl;
 	cout << "Podaj numer komendy: ";
 	cin >> wybor;
@@ -154,6 +154,14 @@ void menuGlowne() {
 }
 
 void zalozKonto() {
+	string imie, nazwisko, pesel, nrDowodu;
+	cout << "Wprowadz dane" << endl;
+	cout << "Imie: ";			cin >> imie;
+	cout << "Nazwisko: ";		cin >> imie;
+	cout << "Pesel: ";			cin >> imie;
+	cout << "Numer dowodu: ";	cin >> imie;
+
+	Uzytkownik* user = new Uzytkownik(imie, nazwisko, pesel, nrDowodu);
 
 }
 

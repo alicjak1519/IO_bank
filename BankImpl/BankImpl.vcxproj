@@ -152,6 +152,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BankImpl.cpp" />
+    <ClCompile Include="Data.cpp" />
+    <ClCompile Include="KontoBankowe.cpp" />
+    <ClCompile Include="Kredyt.cpp" />
+    <ClCompile Include="Lokata.cpp" />
+    <ClCompile Include="Osoba.cpp" />
+    <ClCompile Include="Pracownik.cpp" />
+    <ClCompile Include="Przelew.cpp" />
+    <ClCompile Include="Uzytkownik.cpp" />
+    <ClCompile Include="ZlecenieStale.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

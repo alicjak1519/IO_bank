@@ -7,30 +7,33 @@
 using namespace std;
 
 class Data {
-public:
+private:
 	int year;
 	int month;
 	int day;
 	int hour;
 	int minute;
 	int second;
+public:
 	Data(int y, int m, int d, int h, int min, int s) : year(y), month(m), day(d), hour(h), minute(min), second(s) {};
 };
 
 
 class ZlecenieStale {
-public:
+private:
 	int czestotliwosc;
 	Data dataRozpoczecia;
+public:
 	ZlecenieStale();
 	void ustawCzestotliwosc() {};
 	void ustawDateRozpoczecia() {};
 };
 
 class Lokata {
-public:
+private:
 	short wysokoscOprocentowania;
 	int czasTrwaniaLokaty;
+public:
 	Lokata() {};
 	void kapitalizacjaOdsetek() {};
 	void otwarcieLokaty() {};
@@ -38,13 +41,14 @@ public:
 };
 
 class Kredyt {
-public:
+private:
 	double wysokoscKredytu;
 	float wysokoscOprocentowania;
 	double wysokoscRaty;
 	double dlugoscTrwania;
 	double kwotaSplacona;
 	double kwotaDoSplacenia;
+public:
 	Kredyt() {};
 	void obliczRate() {};
 	void przelejSrodki() {};
@@ -54,13 +58,16 @@ public:
 };
 
 class KontoBankowe {
-public:
-	long numerKonta;
+private:
 	double saldo;
+	string numerKonta;
 	string typKonta;
 	vector <Kredyt> kredyty;
 	vector <Lokata> lokaty;
 	KontoBankowe() {};
+public:
+	KontoBankowe(string typ);
+	KontoBankowe(const KontoBankowe &konto);
 	void sprawdzSaldo() {};
 	void wp³ac() {};
 	void wyplac() {};
@@ -68,12 +75,13 @@ public:
 };
 
 class Przelew {
-public:
+private:
 	double wysokoscPrzelewu;
 	Data data;
 	string odbiorca;
 	string tytul;
 	long numerKontaOdiorcy;
+public:
 	Przelew();
 	void wplacNaKonto(KontoBankowe konto) {};
 	void pobierzZKonta(KontoBankowe konto) {};
@@ -81,34 +89,36 @@ public:
 };
 
 class Osoba {
-public:
+private:
 	string imie;
 	string nazwisko;
 	string pesel;
 	string nrDowodu;
-	Osoba(string im, string naz, string pes, string nrDow) {
-		imie = im;
-		nazwisko = naz;
-		pesel = pes;
-		nrDowodu = nrDow;
-	};
+public:
+	Osoba(){}
+	Osoba(string im, string naz, string pes, string nrDow);
 };
 
-class U¿ytkownik : public Osoba {
+class Uzytkownik : public Osoba {
+private:
+	vector <KontoBankowe*> konta;
 public:
-	vector <KontoBankowe> konta;
-	U¿ytkownik();
+	Uzytkownik();
+	Uzytkownik(string im, string naz, string pes, string nrDow);
 	void sprawdzStanKonta() {};
 	void wezKredyt() {};
 	void zalozLokate() {};
 	void zrobPrzelew() {};
 	void zlecPrzelewStaly() {};
+	void zalozKonto();
 
 };
 class Pracownik : public Osoba {
+private:
 	string idPracownika;
 	string stanowisko;
 	double wynagrodzenie;
+public:
 	Pracownik();
 	void zatwierdzKredyty() {};
 	void sprawdzZdolnosc() {};
