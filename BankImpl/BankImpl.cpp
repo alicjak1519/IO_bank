@@ -10,8 +10,22 @@ using namespace std;
 
 vector <Uzytkownik*> listaKlientow;
 int wybor;
-void start();
+
+void stanKonta();
+void przelewy();
+void lokaty();
+void kredyty();
 void menuGlowne();
+void logowanie();
+void zalozKonto();
+void start();
+int main()
+{
+	start();
+
+	return 0;
+}
+
 
 void stanKonta() {
 	system("cls");
@@ -160,7 +174,7 @@ void logowanie() {
 	string nrklienta, haslo;
 	cout << "Podaj numer klienta: ";	cin >> nrklienta;
 	cout << "Podaj haslo: ";			cin >> haslo;
-	
+
 
 
 }
@@ -203,7 +217,7 @@ void start() {
 	cout << "Podaj numer komendy: ";
 	cin >> wybor;
 
-	
+
 	switch (wybor) {
 	case 1:
 		menuGlowne();
@@ -217,11 +231,3 @@ void start() {
 	};
 
 };
-
-int main()
-{
-	start();
-
-	return 0;
-}
-
