@@ -65,10 +65,10 @@ void przelewy() {
 		zalogowany->zrobPrzelew();
 		break;
 	case 2:
-
+		zalogowany->zaplanujPrzelew();
 		break;
 	case 3:
-
+		zalogowany->zlecPrzelewStaly();
 		break;
 	case 4:
 

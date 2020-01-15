@@ -16,6 +16,8 @@ private:
 	int second;
 public:
 	Data(int y, int m, int d, int h, int min, int s) : year(y), month(m), day(d), hour(h), minute(min), second(s) {};
+	void ustawDate();
+	void wyswietlDate();
 };
 
 
@@ -83,11 +85,12 @@ private:
 	string odbiorca;
 	string tytul;
 	string numerKontaOdiorcy;
+	string czestotliwosc;
 public:
 	Przelew(string adresat, string nrKonta, double kwota, string tyt);
-	void wplacNaKonto(KontoBankowe konto) {};
-	void pobierzZKonta(KontoBankowe konto) {};
-	void sprawdzMozliwoscWykonania(KontoBankowe konto) {};
+	Przelew(string adresat, string nrKonta, double kwota, string tyt, string czesto);
+	Przelew(string adresat, string nrKonta, double kwota, string tyt, bool check);
+	void wyswietlDane();
 };
 
 class Osoba {
@@ -99,7 +102,7 @@ private:
 public:
 	Osoba() {};
 	Osoba(string im, string naz, string pes, string nrDow);
-	string zwrocImie() { return "kupa"; }
+	string zwrocImie() {return "kupa"; }
 	string zwrocNazwisko() { return nazwisko; }
 };
 
@@ -107,6 +110,7 @@ class Uzytkownik : public Osoba {
 private:
 	vector <KontoBankowe*> konta;
 	vector <Przelew*> przelewy;
+	vector <Przelew*> zleceniaStale;
 	string numerKlienta;
 	string haslo;
 public:
@@ -117,13 +121,16 @@ public:
 	void zwrocDane() {
 		string im = zwrocImie();
 		string naz = zwrocNazwisko();
-		cout << im ;
+		cout << im;
+		cout << naz;
 	}
 	void sprawdzStanKonta();
-	void wezKredyt() {};
-	void zalozLokate() {};
-	void zrobPrzelew() {};
-	void zlecPrzelewStaly() {};
+	void wezKredyt();
+	void zalozLokate();
+	void pokazHistorie();
+	void zrobPrzelew() ;
+	void zaplanujPrzelew();
+	void zlecPrzelewStaly();
 	void zalozKonto();
 
 };

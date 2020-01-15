@@ -40,8 +40,44 @@ void Uzytkownik::zrobPrzelew() {
 	cout << "Numer konta: ";	cin >> nrKonta;
 	cout << "Kwota: ";			cin >> kwota;
 	cout << "Tytul: ";			cin >> tytul;
-	cout << "Podaj numer konta z którego chcesz zrobic przelew: "; cin >> konto;
-	Przelew* przelew = new Przelew(adresat,nrKonta,kwota,tytul);
+	cout << "Podaj numer konta z którego chcesz robic zlecenia stale: "; cin >> konto;
+	Przelew* przelew = new Przelew(adresat, nrKonta, kwota, tytul);
 	przelewy.push_back(przelew);
 	konta[konto - 1]->wyplac(kwota);
 };
+
+void Uzytkownik::zaplanujPrzelew() {
+	string adresat, nrKonta, tytul;
+	double kwota;
+	int konto;
+	cout << "Adresat: ";		cin >> adresat;
+	cout << "Numer konta: ";	cin >> nrKonta;
+	cout << "Kwota: ";			cin >> kwota;
+	cout << "Tytul: ";			cin >> tytul;
+	cout << "Podaj numer konta z którego chcesz robic zlecenia stale: "; cin >> konto;
+	Przelew* przelew = new Przelew(adresat, nrKonta, kwota, tytul, true);
+	przelewy.push_back(przelew);
+	konta[konto - 1]->wyplac(kwota);
+};
+
+void Uzytkownik::zlecPrzelewStaly() {
+	string adresat, nrKonta, tytul, czesto;
+	double kwota;
+	int konto;
+	cout << "Adresat: ";		cin >> adresat;
+	cout << "Numer konta: ";	cin >> nrKonta;
+	cout << "Kwota: ";			cin >> kwota;
+	cout << "Tytul: ";			cin >> tytul;
+	cout << "Podaj numer konta z którego chcesz robic zlecenia stale: "; cin >> konto;
+	cout << "Czestotilowsc: ";	cin >> czesto;
+	Przelew* zlecenieStale = new Przelew(adresat,nrKonta,kwota,tytul,czesto);
+	przelewy.push_back(zlecenieStale);
+	konta[konto - 1]->wyplac(kwota);
+};
+
+void Uzytkownik::pokazHistorie() {
+	for (size_t i = 0; i < przelewy.size(); i++) {
+		przelewy[i]->wyswietlDane();
+	}
+}
+
