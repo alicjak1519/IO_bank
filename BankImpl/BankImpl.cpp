@@ -7,7 +7,7 @@
 #include <vector>
 
 using namespace std;
-
+Uzytkownik* testowy = new Uzytkownik("Jan", "Kowalski", "1", "1", "1", "1");
 vector <Uzytkownik*> listaKlientow;
 Uzytkownik* zalogowany;
 int wybor;
@@ -84,27 +84,26 @@ void lokaty() {
 	cout << endl;
 	cout << "1. Sprawdz stan lokaty" << endl;
 	cout << "2. Zaloz lokate" << endl;
-	cout << "3. Wplac na lokate" << endl;
-	cout << "4. Rozwiaz lokate" << endl;
-	cout << "5. Cofnij" << endl;
+	cout << "3. Rozwiaz lokate" << endl;
+	cout << "4. Cofnij" << endl;
 	cout << endl;
 	cout << "Podaj numer komendy: ";
 	cin >> wybor;
 
 	switch (wybor) {
 	case 1:
-
+		zalogowany->sprawdzStanLokaty();
+		menuGlowne();
 		break;
 	case 2:
-
+		zalogowany->zalozLokate();
+		menuGlowne();
 		break;
 	case 3:
-
+		zalogowany->usunLokate();
+		menuGlowne();
 		break;
 	case 4:
-
-		break;
-	case 5:
 		menuGlowne();
 	};
 };
@@ -176,7 +175,7 @@ void logowanie() {
 	string nrklienta, haslo;
 	cout << "Podaj numer klienta: ";	cin >> nrklienta;
 	cout << "Podaj haslo: ";			cin >> haslo;
-	
+
 	bool check = false;
 	for (size_t i = 0; i < listaKlientow.size(); i++) {
 		if (listaKlientow[i]->getNrKlienta() == nrklienta && listaKlientow[i]->getHaslo() == haslo) {
@@ -223,6 +222,7 @@ void zalozKonto() {
 }
 
 void start() {
+	listaKlientow.push_back(testowy);
 	system("cls");
 	cout << "----MENU----" << endl;
 	cout << endl;
@@ -246,3 +246,4 @@ void start() {
 	};
 
 };
+

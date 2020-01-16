@@ -33,13 +33,18 @@ public:
 
 class Lokata {
 private:
-	short wysokoscOprocentowania;
-	int czasTrwaniaLokaty;
+	float wysokoscOprocentowania;
+	short czasTrwaniaLokaty;
+	double saldoLokaty;
+	Lokata();
 public:
-	Lokata() {};
+	Lokata(const Lokata& lokata);
+	Lokata(short czas, double saldo, float oprocentowanie);
 	void kapitalizacjaOdsetek() {};
-	void otwarcieLokaty() {};
-	void zamkniecieLokaty() {};
+	double zwrocSaldoLokaty() { return saldoLokaty; }
+	short zwrocCzasTrwaniaLokaty() { return czasTrwaniaLokaty; }
+	float zwrocWysokoscOprocentowania() { return wysokoscOprocentowania; }
+	void wplac(double kwota) { saldoLokaty += kwota; }
 };
 
 class Kredyt {
@@ -69,7 +74,7 @@ private:
 	KontoBankowe() {};
 public:
 	KontoBankowe(string typ);
-	KontoBankowe(const KontoBankowe &konto);
+	KontoBankowe(const KontoBankowe& konto);
 	double zwrocSaldo() { return saldo; };
 	string zwrocNrKonta() { return numerKonta; };
 	string zwrocTypKonta() { return typKonta; };
@@ -81,7 +86,7 @@ public:
 class Przelew {
 private:
 	double wysokoscPrzelewu;
-	Data *data;
+	Data* data;
 	string odbiorca;
 	string tytul;
 	string numerKontaOdiorcy;
@@ -102,7 +107,7 @@ private:
 public:
 	Osoba() {};
 	Osoba(string im, string naz, string pes, string nrDow);
-	string zwrocImie() {return "kupa"; }
+	string zwrocImie() { return "kupa"; }
 	string zwrocNazwisko() { return nazwisko; }
 };
 
@@ -111,6 +116,7 @@ private:
 	vector <KontoBankowe*> konta;
 	vector <Przelew*> przelewy;
 	vector <Przelew*> zleceniaStale;
+	vector <Lokata*> lokaty;
 	string numerKlienta;
 	string haslo;
 public:
@@ -127,8 +133,10 @@ public:
 	void sprawdzStanKonta();
 	void wezKredyt();
 	void zalozLokate();
+	void sprawdzStanLokaty();
+	void usunLokate();
 	void pokazHistorie();
-	void zrobPrzelew() ;
+	void zrobPrzelew();
 	void zaplanujPrzelew();
 	void zlecPrzelewStaly();
 	void zalozKonto();

@@ -22,13 +22,13 @@ void Uzytkownik::zalozKonto()			//Stworzyc menu zakladania konta
 	KontoBankowe* konto = new KontoBankowe(typKonta);
 	konta.push_back(konto);
 	cout << "Utworzyles nowe " << typKonta << " konto." << endl;
-	
+
 }
 
 void Uzytkownik::sprawdzStanKonta() {
 
 	for (size_t i = 0; i < konta.size(); i++) {
-		cout << i << "-" << konta[i]->zwrocTypKonta() << ": " << konta[i]->zwrocNrKonta() << " SALDO:" << konta[i]->zwrocSaldo() << endl;
+		cout << i + 1 << "- Typ konta: " << konta[i]->zwrocTypKonta() << "\t Numer konta: " << konta[i]->zwrocNrKonta() << " \t SALDO:" << konta[i]->zwrocSaldo() << endl;
 	}
 }
 
@@ -70,7 +70,7 @@ void Uzytkownik::zlecPrzelewStaly() {
 	cout << "Tytul: ";			cin >> tytul;
 	cout << "Podaj numer konta z którego chcesz robic zlecenia stale: "; cin >> konto;
 	cout << "Czestotilowsc: ";	cin >> czesto;
-	Przelew* zlecenieStale = new Przelew(adresat,nrKonta,kwota,tytul,czesto);
+	Przelew* zlecenieStale = new Przelew(adresat, nrKonta, kwota, tytul, czesto);
 	przelewy.push_back(zlecenieStale);
 	konta[konto - 1]->wyplac(kwota);
 };
@@ -81,3 +81,64 @@ void Uzytkownik::pokazHistorie() {
 	}
 }
 
+void Uzytkownik::zalozLokate()												//TESTY za³o¿yæ lokatê gdy za ma³e œrodki, oraz gdy wszystko ok 
+{
+	double kwota;
+	int czasTrwania;
+	int wybor;
+	float oprocentowanie;
+
+	cout << "Wprowadz kwote ktora chcialbys wplacic na lokate" << endl;
+	cin >> kwota;
+	cout << "Na jaki czas chcialbys zalozyc lokate? Podaj liczbe miesiecy" << endl;
+	cin >> czasTrwania;
+	oprocentowanie = rand() % 5 + 1.5;
+	cout << "Twoje oprocentowanie to: " << oprocentowanie << endl;
+	cout << "Oto twoje konta, wybierz z ktorego z nich chcialbys wplacic na lokate" << endl;
+	sprawdzStanKonta();
+	cin >> wybor;
+	wybor -= wybor;
+	if (konta[wybor]->zwrocSaldo() < kwota) {
+		cout << "Zbyt malo srodkow na koncie, nie mozna zalozyc lokaty" << endl;
+	}
+	else {
+		konta[wybor]->wyplac(kwota);
+		Lokata* lokata = new Lokata(czasTrwania, kwota, oprocentowanie);
+		lokaty.push_back(lokata);
+		cout << "Zalozono lokate pomyslnie" << endl;
+	}
+	system("PAUSE");
+}
+
+void Uzytkownik::sprawdzStanLokaty()								//TESTY: Sprawdziæ lokatê pust¹, oraz tak¹ która istnieje
+{
+	if (lokaty.empty()) {
+		cout << "Brak lokat" << endl;
+	}
+	else {
+		for (size_t i = 0; i < lokaty.size(); i++) {
+			cout << i << " \t Saldo lokaty:" << lokaty[i]->zwrocSaldoLokaty() << "\t czas trwania lokaty: "
+				<< lokaty[i + 1]->zwrocCzasTrwaniaLokaty() << "\t Wysokosc oprocentowania: " << lokaty[i]->zwrocWysokoscOprocentowania() << endl;
+		}
+	}
+	system("PAUSE");
+}
+
+void Uzytkownik::usunLokate()									//TESTY: Usun¹æ lokatê która jest, oraz której nie ma
+{
+	int wybor;
+	cout << "Oto twoje lokaty, ktora z nich chcesz usunac?" << endl;
+	sprawdzStanLokaty();
+	cin >> wybor;
+	wybor -= wybor;
+	if (!lokaty.empty()) {
+		if (lokaty[wybor] != NULL) {
+			lokaty.erase(lokaty.begin() + wybor);
+			cout << "Usunieto" << endl;
+		}
+	}
+	else {
+		cout << "Nie ma takiej lokaty" << endl;
+	}
+	system("PAUSE");
+}

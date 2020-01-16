@@ -7,7 +7,7 @@ using namespace std;
 
 KontoBankowe::KontoBankowe(string typ)
 {
-	saldo = 0;
+	saldo = 2000;
 	typKonta = typ;
 	int liczba;
 	srand(time(NULL));
