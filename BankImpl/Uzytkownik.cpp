@@ -11,8 +11,6 @@ Uzytkownik::Uzytkownik(string im, string naz, string pes, string nrDow, string n
 	zalozKonto();
 }
 
-
-
 void Uzytkownik::zalozKonto()			//Stworzyc menu zakladania konta 
 {
 	string typKonta;
@@ -141,4 +139,72 @@ void Uzytkownik::usunLokate()									//TESTY: Usun¹æ lokatê która jest, oraz kt
 		cout << "Nie ma takiej lokaty" << endl;
 	}
 	system("PAUSE");
+}
+
+
+void wybor() {
+	
+};
+
+void Uzytkownik::wezKredyt() {
+	int lata, nrKonta;
+	double kwota;
+	string temat;
+	KontoBankowe* temp_konto;
+	cout << "Podaj cel kredytu: ";	cin >> temat;
+	cout << "Wysokosc kredytu: ";	cin >> kwota;
+	cout << "Na ile lat: ";			cin >> lata;
+	
+	Kredyt* kredyt = new Kredyt(temat, kwota, lata);
+	char check;
+	cout << "Czy definytywniej chcesz wziac ten kredyt.(T/N)";	cin >> check;
+	switch (check) {
+	case 'T':
+		kredyty.push_back(kredyt);
+		cout << "Wybierz konto:";  cin >> nrKonta;
+		temp_konto = konta[nrKonta - 1];
+		temp_konto->wplac(kwota);
+		cout << "Kredyt zrealizowany." << endl;
+		break;
+	case 'N':
+		delete kredyt;
+		cout << "Kredyt porzucony." << endl;
+		break;
+	}
+
+}
+
+void Uzytkownik::pokazKredyty() {
+	for (size_t i = 0; i < kredyty.size(); i++) {
+		cout << "	----" << i + 1 << "----	" << endl;
+		kredyty[i]->wyswietlKredyt();
+		cout << endl;
+	}
+}
+
+void Uzytkownik::zaplacRate() {
+	int nrKonta, nrKredytu;
+	cout << "Wybierz konto:";  cin >> nrKonta;
+	KontoBankowe* temp_konto = konta[nrKonta - 1];
+
+	cout << "Wybierz kredyt:";  cin >> nrKredytu;
+	Kredyt* temp_kredyt = kredyty[nrKredytu - 1];
+
+	temp_kredyt->przelejSrodki();
+	double rata = temp_kredyt->zwrocRate();
+	temp_konto->wyplac(rata);
+}
+
+void Uzytkownik::splacKredyt() {
+	int nrKonta, nrKredytu;
+	cout << "Wybierz konto:";  cin >> nrKonta;
+	KontoBankowe* temp_konto = konta[nrKonta - 1];
+
+	cout << "Wybierz kredyt:";  cin >> nrKredytu;
+	Kredyt* temp_kredyt = kredyty[nrKredytu - 1];
+	double kwota = temp_kredyt->splacKredyt();
+	temp_konto->wyplac(kwota);
+	kredyty.erase(kredyty.begin() + nrKredytu - 1);
+
+	cout << "Kredyt nr " << nrKredytu << " zostal splacony." << endl;
 }

@@ -27,7 +27,6 @@ int main()
 	return 0;
 }
 
-
 void stanKonta() {
 	system("cls");
 	cout << "----STANY KONT----" << endl;
@@ -44,6 +43,10 @@ void stanKonta() {
 	switch (wybor) {
 	case 1:
 		menuGlowne();
+	default:
+		cout << "Bledny numer komendy!! Wpisz ponownie.";
+		getchar(); getchar();
+		stanKonta();
 	};
 };
 
@@ -71,11 +74,16 @@ void przelewy() {
 		zalogowany->zlecPrzelewStaly();
 		break;
 	case 4:
-
+		zalogowany->pokazHistorie();
 		break;
 	case 5:
 		menuGlowne();
+		break;
+	default:
+		cout << "Bledny numer komendy!! Wpisz ponownie.";
 	};
+	getchar(); getchar();
+	przelewy();
 };
 
 void lokaty() {
@@ -93,19 +101,21 @@ void lokaty() {
 	switch (wybor) {
 	case 1:
 		zalogowany->sprawdzStanLokaty();
-		menuGlowne();
 		break;
 	case 2:
 		zalogowany->zalozLokate();
-		menuGlowne();
 		break;
 	case 3:
 		zalogowany->usunLokate();
-		menuGlowne();
 		break;
 	case 4:
 		menuGlowne();
+		break;
+	default:
+		cout << "Bledny numer komendy!! Wpisz ponownie.";
 	};
+	getchar(); getchar();
+	lokaty();
 };
 
 void kredyty() {
@@ -114,8 +124,8 @@ void kredyty() {
 	cout << endl;
 	cout << "1. Pokaz kredyty" << endl;
 	cout << "2. Zaplac rate" << endl;
-	cout << "3. Otworz kredyt" << endl;
-	cout << "4. Zamknij kredyt" << endl;
+	cout << "3. Wez kredyt" << endl;
+	cout << "4. Splac kredyt" << endl;
 	cout << "5. Cofnij" << endl;
 	cout << endl;
 	cout << "Podaj numer komendy: ";
@@ -123,20 +133,25 @@ void kredyty() {
 
 	switch (wybor) {
 	case 1:
-
+		zalogowany->pokazKredyty();
 		break;
 	case 2:
-
+		zalogowany->zaplacRate();
 		break;
 	case 3:
-
+		zalogowany->wezKredyt();
 		break;
 	case 4:
-
+		zalogowany->splacKredyt();
 		break;
 	case 5:
 		menuGlowne();
+		break;
+	default:
+		cout << "Bledny numer komendy!! Wpisz ponownie.";
 	};
+	getchar(); getchar();
+	kredyty();
 };
 
 void menuGlowne() {
@@ -168,7 +183,12 @@ void menuGlowne() {
 		break;
 	case 5:
 		start();
+		break;
+	default:
+		cout << "Bledny numer komendy!! Wpisz ponownie.";
 	};
+	getchar(); getchar();
+	menuGlowne();
 }
 
 void logowanie() {
@@ -241,9 +261,9 @@ void start() {
 		zalozKonto();
 		break;
 	default:
-		break;
-
+		cout << "Bledny numer komendy!! Wpisz ponownie.";
+		getchar(); getchar();
+		start();
 	};
-
 };
 

@@ -21,3 +21,15 @@ KontoBankowe::KontoBankowe(string typ)
 KontoBankowe::KontoBankowe(const KontoBankowe& konto):
 	numerKonta(konto.numerKonta), saldo(konto.saldo), typKonta(konto.typKonta)
 {}
+
+void KontoBankowe::wyplac(double kwota) {
+	saldo -= kwota;
+	cout << "SALDO konta zmniejszone o: " << kwota << endl;
+
+}
+
+void KontoBankowe::wplac(double kwota) {
+	saldo += kwota;
+	cout << "SALDO konta zwiekszone o: " << kwota << endl;
+
+}

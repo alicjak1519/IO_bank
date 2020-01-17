@@ -12,6 +12,7 @@ Przelew::Przelew(string adresat, string nrKonta, double kwota, string tyt) {
 	
 
 };
+
 Przelew::Przelew(string adresat, string nrKonta, double kwota, string tyt, string czesto) {
 	data = new Data(2020, 1, 1, 7, 0, 0);
 	odbiorca = adresat;
@@ -29,6 +30,7 @@ Przelew::Przelew(string adresat, string nrKonta, double kwota, string tyt, bool 
 	wysokoscPrzelewu = kwota;
 	tytul = tyt;
 };
+
 void Przelew::wyswietlDane() {
 	data->wyswietlDate();
 	cout << " " << odbiorca << " " << tytul << " " << wysokoscPrzelewu << endl;

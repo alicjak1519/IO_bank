@@ -1,8 +1,6 @@
-
 #include <iostream>
 #include <string>
 #include <vector>
-
 
 using namespace std;
 
@@ -19,7 +17,6 @@ public:
 	void ustawDate();
 	void wyswietlDate();
 };
-
 
 class ZlecenieStale {
 private:
@@ -52,16 +49,17 @@ private:
 	double wysokoscKredytu;
 	float wysokoscOprocentowania;
 	double wysokoscRaty;
-	double dlugoscTrwania;
+	int dlugoscTrwania;
 	double kwotaSplacona;
 	double kwotaDoSplacenia;
+	string tytul;
 public:
-	Kredyt() {};
-	void obliczRate() {};
-	void przelejSrodki() {};
-	void otworzKredyt() {};
-	void zamknijKredyt() {};
-	void zatwierdzKredyt() {};
+	Kredyt(string temat, double kwota, int lata);
+	void wyswietlKredyt();
+	double obliczRate(double K, int l);
+	void przelejSrodki();
+	double zwrocRate() { return wysokoscRaty; };
+	double splacKredyt() { return kwotaDoSplacenia; };
 };
 
 class KontoBankowe {
@@ -78,8 +76,8 @@ public:
 	double zwrocSaldo() { return saldo; };
 	string zwrocNrKonta() { return numerKonta; };
 	string zwrocTypKonta() { return typKonta; };
-	void wp³ac() {};
-	void wyplac(double kwota) { saldo -= kwota; };
+	void wplac(double kwota);
+	void wyplac(double kwota);
 
 };
 
@@ -117,6 +115,7 @@ private:
 	vector <Przelew*> przelewy;
 	vector <Przelew*> zleceniaStale;
 	vector <Lokata*> lokaty;
+	vector <Kredyt*> kredyty;
 	string numerKlienta;
 	string haslo;
 public:
@@ -132,6 +131,9 @@ public:
 	}
 	void sprawdzStanKonta();
 	void wezKredyt();
+	void pokazKredyty();
+	void zaplacRate();
+	void splacKredyt();
 	void zalozLokate();
 	void sprawdzStanLokaty();
 	void usunLokate();
@@ -140,8 +142,8 @@ public:
 	void zaplanujPrzelew();
 	void zlecPrzelewStaly();
 	void zalozKonto();
-
 };
+
 class Pracownik : public Osoba {
 private:
 	string idPracownika;
