@@ -1,0 +1,8 @@
+set (Boost_USE_STATIC_LIBS OFF)
+set(BOOST_INCLUDEDIR /home/aak/Documents/boost-test/include/)
+find_package (Boost REQUIRED COMPONENTS unit_test_framework)
+include_directories (${Boost_INCLUDE_DIRS})
+add_executable (Boost_Tests_run UzytkownikTest.cpp)
+target_link_libraries (Boost_Tests_run BankImpl_lib)
+target_link_libraries (Boost_Tests_run ${Boost_LIBRARIES})
+ADD_DEFINITIONS(-DBOOST_TEST_DYN_LINK)
