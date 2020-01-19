@@ -105,7 +105,7 @@ private:
 public:
 	Osoba() {};
 	Osoba(string im, string naz, string pes, string nrDow);
-	string zwrocImie() { return "kupa"; }
+	string zwrocImie() { return imie; }
 	string zwrocNazwisko() { return nazwisko; }
 };
 
@@ -142,15 +142,4 @@ public:
 	void zaplanujPrzelew();
 	void zlecPrzelewStaly();
 	void zalozKonto();
-};
-
-class Pracownik : public Osoba {
-private:
-	string idPracownika;
-	string stanowisko;
-	double wynagrodzenie;
-public:
-	Pracownik();
-	void zatwierdzKredyty() {};
-	void sprawdzZdolnosc() {};
 };
